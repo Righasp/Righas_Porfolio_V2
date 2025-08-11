@@ -453,6 +453,7 @@ button:hover {
     transition: none;
 }
 
+
 .sub-tab.no-hover::before,
 .sub-tab.no-hover::after {
     content: "";
