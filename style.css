@@ -1,0 +1,487 @@
+:root {
+    --primary-color: rgba(255, 255, 255, 0.1);
+    --secondary-color: rgba(255, 255, 255, 0.05);
+    --accent-color: #4a90e2;
+    --text-color: rgba(255, 255, 255, 0.9);
+}
+
+body {
+    margin: 0;
+    padding: 2rem;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--text-color);
+    overflow-x: hidden;
+    position: relative;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(-45deg, #0a0a0a, #1f1420, #d490ff, #442d46);
+    background-size: 400% 400%;
+    z-index: -2;
+    background-position: 20% 50%;
+    transition: background-position 4s ease;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.profile-pic:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 0 15px 3px rgba(255, 255, 255, 0.25),
+        inset 0 0 15px 3px rgba(255, 255, 255, 0.15);
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.intro {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    font-weight: bold;
+    color: white;
+    opacity: 0;
+    animation: introFade 3s ease forwards;
+    z-index: 10;
+}
+
+@keyframes introFade {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+.glass-container {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+}
+
+.glass-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(
+            to top left,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0) 50%
+        ),
+        linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0) 50%
+        );
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+.glass-container::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 0, 0, 0.05)
+    );
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+.glass-container.dark {
+    background: rgba(20, 20, 20, 0.7);
+}
+
+.glass-container.light {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.glass-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header & nav */
+header {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 12px;
+    position: relative;
+    transition:
+        background-color 0.5s ease,
+        border-color 1s ease;
+}
+
+nav a::before,
+nav a::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+nav a::before {
+    inset: 0;
+    background:
+        linear-gradient(
+            to top left,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0) 50%
+        ),
+        linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0) 50%
+        );
+    mix-blend-mode: screen;
+}
+
+nav a::after {
+    inset: 2px;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 0, 0, 0.05)
+    );
+    mix-blend-mode: overlay;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+nav a:hover::before,
+nav a:hover::after {
+    opacity: 1;
+}
+
+/* Updated skill-item with glass morph + hover pop-up */
+.skill-item {
+    padding: 1rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-color);
+    cursor: default;
+    position: relative;
+    transition:
+        background-color 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease,
+        transform 0.3s ease;
+    user-select: none;
+}
+
+.skill-item::before,
+.skill-item::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.skill-item::before {
+    inset: 0;
+    background:
+        linear-gradient(
+            to top left,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0) 50%
+        ),
+        linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0) 50%
+        );
+    mix-blend-mode: screen;
+}
+
+.skill-item::after {
+    inset: 2px;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 0, 0, 0.05)
+    );
+    mix-blend-mode: overlay;
+}
+
+.skill-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 6px 15px rgba(255, 255, 255, 0.25),
+        inset 0 0 15px rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px) scale(1.05);
+}
+
+.skill-item:hover::before,
+.skill-item:hover::after {
+    opacity: 1;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.project-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    color: var(--text-color);
+    cursor: default;
+    transition:
+        background-color 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease,
+        transform 0.3s ease;
+    user-select: none;
+}
+
+.project-card::before,
+.project-card::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.project-card::before {
+    inset: 0;
+    background:
+        linear-gradient(
+            to top left,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0) 50%
+        ),
+        linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0) 50%
+        );
+    mix-blend-mode: screen;
+}
+
+.project-card::after {
+    inset: 2px;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 0, 0, 0.05)
+    );
+    mix-blend-mode: overlay;
+}
+
+.project-card:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 6px 15px rgba(255, 255, 255, 0.25),
+        inset 0 0 15px rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px) scale(1.02);
+}
+
+.project-card:hover::before,
+.project-card:hover::after {
+    opacity: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input, textarea, button {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--secondary-color);
+    color: var(--text-color);
+}
+
+button {
+    background: var(--accent-color);
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .glass-container {
+        margin: 1rem auto;
+        padding: 1.5rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    /* Make skill-items full width on mobile for easier tap */
+    .skill-item {
+        width: 100%;
+    }
+}
+
+#hello {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, 40px);
+    font-size: 4rem;
+    color: white;
+    opacity: 0;
+    transition: all 0.8s ease;
+    z-index: 10;
+}
+
+#hello.intro-box {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, 40px);
+    opacity: 0;
+    font-size: 2.5rem;
+    text-align: center;
+    max-width: 300px;
+    z-index: 20;
+    transition: all 0.8s ease;
+}
+
+#hello.intro-box.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+#hello.intro-box.fade-out {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+}
+
+
+
+.sub-tab.no-hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-color);
+    margin-top: 1rem;
+    user-select: text;
+    cursor: default;
+    /* No hover transform or shadow */
+    transition: none;
+}
+
+.sub-tab.no-hover::before,
+.sub-tab.no-hover::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 1;
+    inset: 0;
+    background:
+        linear-gradient(
+            to top left,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0) 50%
+        ),
+        linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0) 50%
+        );
+    mix-blend-mode: screen;
+    z-index: 0;
+}
+
+.sub-tab.no-hover::after {
+    inset: 2px;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 0, 0, 0.05)
+    );
+    mix-blend-mode: overlay;
+}

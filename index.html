@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Righas Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="background"></div>
+
+    <!-- Hello intro -->
+    <div id="hello" class="glass-container intro-box">Hello!</div>
+
+    <header class="glass-container">
+        <h1>Righas</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="about" class="glass-container">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="src/myphoto.jpg" alt="Righas" class="profile-pic" />
+            <!-- <p>
+                I’m an electronics enthusiast and embedded systems developer, currently exploring
+                areas from antenna design to AI hardware integration.
+                I enjoy working on hands-on projects like microcontroller-based robots, radar
+                sensor integration, and CPU design in Verilog.
+                My focus is on building efficient, well-optimized systems while experimenting
+                with new tech in hardware and software.
+            </p> -->
+        </div>
+        <div class="sub-tab no-hover">
+            I’m an electronics enthusiast and embedded systems developer, currently exploring areas from antenna design to AI hardware integration. I enjoy working on hands-on projects like microcontroller-based robots, radar sensor integration, and CPU design in Verilog. My focus is on building efficient, well-optimized systems while experimenting with new tech in hardware and software.
+        </div>
+    </section>
+
+    <section id="skills" class="glass-container">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item">Embedded Systems (Arduino, STM32, ESP)</div>
+            <div class="skill-item">Antenna Design (Microstrip, Circular Polarization)</div>
+            <div class="skill-item">Digital Design (Verilog, RISC-V)</div>
+            <div class="skill-item">Signal Processing & SDR</div>
+            <div class="skill-item">C / C++ for Hardware Control</div>
+            <div class="skill-item">Python for Data & Prototyping</div>
+        </div>
+    </section>
+
+    <section id="projects" class="glass-container">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Drone Flight Controller</h3>
+                <p>
+                    Designed a minimal-libraries Arduino Nano + MPU6050 based flight controller
+                    for a quadcopter, optimizing timing precision for stability.
+                </p>
+            </div>
+            <div class="project-card">
+                <h3>RISC-V CPU in Verilog</h3>
+                <p>
+                    Implemented program counter, branching, and pipeline hazard handling
+                    while learning about operand forwarding.
+                </p>
+            </div>
+            <div class="project-card">
+                <h3>Millimeter-Wave Radar Processing</h3>
+                <p>
+                    Integrated an IWR radar sensor with the SHAKTI Ganga processor to process
+                    object detection data and feed it into on-chip ML algorithms.
+                </p>
+            </div>
+            <div class="project-card">
+                <h3>Circularly Polarized Patch Antenna</h3>
+                <p>
+                    Designed and simulated antennas in IE3D for 3 GHz operation, including
+                    EMCP and circular polarization variants.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="glass-container">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="email" placeholder="Your email" />
+            <textarea placeholder="Your message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
