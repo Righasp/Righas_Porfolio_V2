@@ -24,7 +24,7 @@
 
 .signature-path {
     fill: none; /* No fill → no double line */
-    stroke: #f5c842;
+    stroke: #2c291f;
     stroke-width: 2;
     /* stroke-dasharray: var(--path-length, 3000); */
     stroke-dashoffset: var(--path-length, 3000);
