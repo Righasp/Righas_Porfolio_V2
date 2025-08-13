@@ -120,3 +120,23 @@ window.addEventListener('load', () => {
     const sig = document.querySelector('.signature-container');
     sig.classList.add('show');
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const path = document.getElementById("sigPath");
+    const length = path.getTotalLength();
+
+    // Prepare stroke animation
+    path.style.strokeDasharray = length;
+    path.style.strokeDashoffset = length;
+
+    // Trigger animation
+    setTimeout(() => {
+        path.style.transition = "stroke-dashoffset 3s ease";
+        path.style.strokeDashoffset = "0";
+    }, 200);
+
+    // After stroke animation, fill it
+    setTimeout(() => {
+        path.classList.add("filled");
+    }, 3200);
+});
