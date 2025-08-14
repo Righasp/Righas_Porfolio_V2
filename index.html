@@ -1,107 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Righas Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Righas's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="background"></div>
-
-
-    
-    <div class="signature-container" id="signature">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-130 0 500 300" preserveAspectRatio="xMidYMid meet">
-          <path 
-            id="sigPath"
-            fill="none"
-            stroke="#f5c842"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-d="M165.964,70.802 C160.510,79.795 155.241,84.291 150.155,84.291 C147.796,84.291 146.066,83.192 144.967,80.995 C144.398,79.896 144.113,78.575 144.113,77.028 C144.113,71.820 145.904,66.164 149.484,60.060 C152.820,54.405 156.747,50.010 161.264,46.876 C163.908,45.045 166.309,44.130 168.466,44.130 C171.802,44.130 173.471,46.165 173.471,50.233 C173.471,55.645 170.968,62.501 165.964,70.802 ZM167.734,51.698 C167.407,51.088 166.899,50.783 166.208,50.783 C164.905,50.783 162.993,52.044 160.470,54.567 C157.215,57.823 154.733,61.180 153.024,64.638 C151.030,68.585 150.033,71.861 150.033,74.464 C150.033,75.157 150.216,75.767 150.583,76.295 C151.111,77.028 151.782,77.394 152.597,77.394 C154.550,77.394 156.645,75.929 158.883,72.999 C159.860,71.779 160.653,70.518 161.264,69.215 C161.874,67.914 162.158,67.242 162.118,67.201 C161.101,66.388 160.592,65.757 160.592,65.309 C160.592,64.984 161.243,64.088 162.546,62.623 C166.208,58.514 168.039,55.198 168.039,52.675 C168.039,52.350 167.937,52.024 167.734,51.698 ZM134.897,57.008 C133.228,58.555 130.949,60.630 128.061,63.234 C126.840,66.408 125.925,68.971 125.314,70.924 C124.704,72.877 124.399,74.241 124.399,75.014 C124.399,76.031 124.887,76.539 125.864,76.539 C127.328,76.539 129.220,75.157 131.540,72.389 C132.638,71.046 134.265,68.626 136.423,65.126 C137.277,63.743 138.172,63.051 139.108,63.051 C140.166,63.051 140.695,63.560 140.695,64.577 C140.695,66.327 138.681,69.867 134.653,75.197 C130.461,80.772 126.575,83.559 122.995,83.559 C121.449,83.559 120.187,82.908 119.211,81.605 C118.519,80.670 118.173,79.530 118.173,78.187 C118.173,75.909 118.865,72.755 120.248,68.727 C121.631,64.699 123.686,59.796 126.413,54.018 C133.411,39.329 140.552,27.223 147.836,17.702 C153.654,10.052 158.476,6.227 162.301,6.227 C163.522,6.227 164.519,6.695 165.292,7.631 C166.106,8.567 166.513,9.645 166.513,10.866 C166.513,16.563 161.426,26.043 151.254,39.308 C146.696,45.208 141.244,51.109 134.897,57.008 ZM160.287,14.650 C160.287,13.755 159.900,13.307 159.128,13.307 C156.889,13.307 152.820,17.763 146.921,26.674 C142.038,33.998 137.195,42.950 132.394,53.529 C140.857,46.287 148.425,37.132 155.099,26.064 C158.557,20.326 160.287,16.522 160.287,14.650 ZM108.041,57.008 C106.372,58.555 104.094,60.630 101.205,63.234 C99.985,66.408 99.069,68.971 98.459,70.924 C97.848,72.877 97.543,74.241 97.543,75.014 C97.543,76.031 98.032,76.539 99.008,76.539 C100.473,76.539 102.365,75.157 104.684,72.389 C105.783,71.046 107.410,68.626 109.567,65.126 C110.422,63.743 111.316,63.051 112.253,63.051 C113.310,63.051 113.840,63.560 113.840,64.577 C113.840,66.327 111.825,69.867 107.797,75.197 C103.606,80.772 99.720,83.559 96.139,83.559 C94.594,83.559 93.332,82.908 92.355,81.605 C91.664,80.670 91.318,79.530 91.318,78.187 C91.318,75.909 92.010,72.755 93.393,68.727 C94.776,64.699 96.831,59.796 99.557,54.018 C106.555,39.329 113.697,27.223 120.981,17.702 C126.799,10.052 131.621,6.227 135.446,6.227 C136.667,6.227 137.663,6.695 138.437,7.631 C139.250,8.567 139.657,9.645 139.657,10.866 C139.657,16.563 134.571,26.043 124.399,39.308 C119.841,45.208 114.389,51.109 108.041,57.008 ZM133.432,14.650 C133.432,13.755 133.045,13.307 132.272,13.307 C130.034,13.307 125.965,17.763 120.065,26.674 C115.182,33.998 110.340,42.950 105.539,53.529 C114.002,46.287 121.570,37.132 128.244,26.064 C131.702,20.326 133.432,16.522 133.432,14.650 ZM73.923,80.629 C70.464,82.501 67.249,83.436 64.279,83.436 C61.227,83.436 58.827,82.379 57.077,80.263 C55.897,78.798 55.307,76.805 55.307,74.281 C55.307,67.405 58.542,60.670 65.012,54.079 C70.261,48.708 74.838,46.022 78.744,46.022 C79.802,46.022 80.759,46.348 81.613,46.999 C82.671,47.853 83.200,48.973 83.200,50.355 C83.200,52.513 82.202,55.157 80.209,58.290 C76.099,64.801 69.914,69.297 61.655,71.779 L61.655,72.877 C61.655,73.773 61.878,74.546 62.326,75.197 C63.343,76.703 65.012,77.455 67.331,77.455 C72.417,77.455 78.296,73.549 84.970,65.736 C86.150,64.394 87.146,63.722 87.961,63.722 C88.408,63.722 88.815,63.946 89.181,64.394 C89.426,64.720 89.548,65.025 89.548,65.309 C89.548,66.896 87.595,69.581 83.688,73.366 C80.637,76.336 77.381,78.758 73.923,80.629 ZM69.711,63.722 C72.559,61.525 74.817,59.043 76.486,56.276 C77.097,55.299 77.402,54.425 77.402,53.651 C77.402,52.838 77.015,52.431 76.242,52.431 C75.183,52.431 73.679,53.224 71.725,54.811 C68.225,57.619 65.317,61.688 62.997,67.018 C65.845,66.041 68.083,64.943 69.711,63.722 ZM67.636,21.303 C62.427,29.359 59.152,34.751 57.809,37.477 C58.989,37.355 59.885,37.294 60.495,37.294 C63.709,37.294 65.317,38.087 65.317,39.674 C65.317,40.651 64.807,41.607 63.791,42.543 C63.017,43.275 62.163,43.642 61.227,43.642 L58.847,43.642 C57.870,43.642 56.406,43.825 54.453,44.191 C45.826,59.572 40.190,73.060 37.546,84.657 C36.894,87.262 35.877,88.563 34.494,88.563 C33.435,88.563 32.439,87.892 31.503,86.549 C30.893,85.614 30.588,84.617 30.588,83.559 C30.588,79.652 35.572,67.120 45.541,45.961 C37.159,47.670 28.472,50.315 19.479,53.895 C19.153,54.547 18.828,55.218 18.503,55.910 C12.888,66.693 9.104,76.906 7.150,86.549 C6.743,88.828 5.828,89.967 4.404,89.967 C3.345,89.967 2.411,89.438 1.596,88.380 C0.946,87.567 0.620,86.692 0.620,85.756 C0.620,84.617 1.129,82.246 2.146,78.645 C3.162,75.044 4.221,71.881 5.319,69.154 C5.726,68.138 7.007,65.167 9.165,60.243 C9.693,59.063 10.222,57.823 10.751,56.520 C9.897,56.846 8.716,57.334 7.211,57.985 C6.560,58.270 5.970,58.412 5.441,58.412 C4.180,58.412 3.549,57.456 3.549,55.543 C3.549,54.283 4.078,53.326 5.136,52.675 C5.950,52.146 7.395,51.515 9.470,50.783 C11.667,49.969 13.396,49.298 14.658,48.769 C15.471,47.345 17.017,44.415 19.296,39.979 C19.703,39.166 21.066,36.847 23.386,33.022 C30.018,21.873 34.331,13.939 36.325,9.218 C38.156,4.945 39.295,2.525 39.743,1.955 C40.557,0.897 41.533,0.368 42.673,0.368 C44.585,0.368 45.541,1.304 45.541,3.175 C45.541,7.448 39.722,18.983 28.085,37.782 C26.172,40.875 24.769,43.561 23.874,45.839 L26.926,44.984 C35.226,42.584 42.774,40.489 49.570,38.698 C54.248,30.072 59.986,20.509 66.782,10.011 C67.961,8.140 68.653,6.981 68.857,6.532 C69.833,4.783 70.871,3.908 71.970,3.908 C72.905,3.908 73.679,4.295 74.289,5.067 C74.777,5.719 75.021,6.431 75.021,7.204 C75.021,8.669 74.228,10.765 72.641,13.490 C72.275,14.142 70.606,16.746 67.636,21.303 Z"/>
-        </svg>
-      </div>
-
-    <!-- Hello intro -->
-    <!-- <div id="hello" class="glass-container intro-box">
-        Hello!
-    </div> -->
-
-    <header class="glass-container">
-        <h1>Righas</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+    <header class="main-header">
+        <a href="#" class="logo">Righas's Portfolio</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
         </nav>
     </header>
-
-    <section id="about" class="glass-container">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <img src="src/myphoto.jpg" alt="Righas" class="profile-pic" />
-        </div>
-        <div class="sub-tab no-hover">
-            I’m an electronics enthusiast and embedded systems developer, currently exploring areas from antenna design to AI hardware integration. I enjoy working on hands-on projects like microcontroller-based robots, radar sensor integration, and CPU design in Verilog. My focus is on building efficient, well-optimized systems while experimenting with new tech in hardware and software.
-        </div>
-    </section>
-
-    <section id="skills" class="glass-container">
-        <h2>Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-item">Embedded Systems (Arduino, STM32, ESP)</div>
-            <div class="skill-item">Antenna Design (Microstrip, Circular Polarization)</div>
-            <div class="skill-item">Digital Design (Verilog, RISC-V)</div>
-            <div class="skill-item">Signal Processing & SDR</div>
-            <div class="skill-item">C / C++ for Hardware Control</div>
-            <div class="skill-item">Python for Data & Prototyping</div>
+    
+    <section id="intro">
+        <div class="section-divider-wo-dash"></div>
+        <div class="intro-content">
+            <div class="image-name-container">
+                <img src="src/ingi.jpg" alt="Profile Picture" class="profile-pic">
+                <h2>Righas Panneerselvam</h2>
+            </div>
+            <div class="intro-text">
+                <h3>SoC Design & Verification Engineer</h3>
+                <p class="intro-description">
+                    I am a final-year B.Tech student in Electronics and Communication Engineering at NIT Trichy, with a strong interest in the design and verification of silicon products. I enjoy tackling challenging problems, so I participate in various hardware competitions and hackathons. As a member of the official research and development club, Spider R&D, I actively manage multiple teams and contribute to diverse projects. I am seeking full-time opportunities in the fields of electronics, embedded systems, and silicon design and verification.
+                </p>
+            </div>
         </div>
     </section>
 
-    <section id="projects" class="glass-container">
+    <section id="achievements">
+        <h2>Achievements</h2>
+        <div class="section-divider-wo-dash"></div>
+        <div class="achievement-container">
+            <ul class="achievement-list">
+                <li>Meshmerize Finalist, HW competition, part of Techfest conducted by IIT-B</li>
+                <li>E-yantra Winner, national level FPGA HW competition by GoE and IIT-B</li>
+                <li>Spider Aragog Workshop, designed and developed spider robot from scratch with all DoF Movements servicing over 200 people</li>
+                <li>Transfinite HW Hackathon Finalist</li>
+                <li>TI HW Hackathon consolation</li>
+            </ul>
+            <div class="achievement-images">
+                <img src="src/E-yantra.jpg" alt="Achievement 1" class="achievement-img active">
+                <img src="src/Meshmerize.jpg" alt="Achievement 2" class="achievement-img">
+                <img src="src/Workshop_2.JPG" alt="Achievement 3" class="achievement-img">
+                <img src="src/Workshop_3.JPG" alt="Achievement 3" class="achievement-img">
+                <button class="nav-arrow prev-arrow">&larr;</button>
+                <button class="nav-arrow next-arrow">&rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
         <h2>Projects</h2>
+        <div class="section-divider-wo-dash"></div>
         <div class="project-grid">
-            <div class="project-card">
-                <h3>Drone Flight Controller</h3>
-                <p>
-                    Designed a minimal-libraries Arduino Nano + MPU6050 based flight controller
-                    for a quadcopter, optimizing timing precision for stability.
-                </p>
+            <div class="project-tile" data-project="1">
+                <img src="src/RISCV_2.png" alt="Project 1" class="project-img">
+                <h4>32 Bit RISCV CPU</h4>
+                <p id="project-detail">Designed a 32-bit RISC-V CPU which can process all 32 instructions. Major modules include Data Memory, Instruction Memory, Register file and logic solver.</p>
             </div>
-            <div class="project-card">
-                <h3>RISC-V CPU in Verilog</h3>
-                <p>
-                    Implemented program counter, branching, and pipeline hazard handling
-                    while learning about operand forwarding.
-                </p>
+            <div class="project-tile" data-project="2">
+                <img src="src/SRAM.png" alt="Project 2" class="project-img">
+                <h4>32X8 SRAM Memory Array</h4>
+                <p id="project-detail">Designed a 256 Bit SRAM Memory model in Cadence Virtuoso. The fabric of 32X8 bit cells hold the total of 32 ASCII characters.</p>
             </div>
-            <div class="project-card">
-                <h3>Millimeter-Wave Radar Processing</h3>
-                <p>
-                    Integrated an IWR radar sensor with the SHAKTI Ganga processor to process
-                    object detection data and feed it into on-chip ML algorithms.
-                </p>
+            <!-- <div class="project-tile" data-project="3">
+                <img src="project3.jpg" alt="Project 3" class="project-img">
+                <h4>IoT Home Automation</h4>
+                <p>Smart home system with IoT integration</p>
             </div>
-            <div class="project-card">
-                <h3>Circularly Polarized Patch Antenna</h3>
-                <p>
-                    Designed and simulated antennas in IE3D for 3 GHz operation, including
-                    EMCP and circular polarization variants.
-                </p>
+            <div class="project-tile" data-project="4">
+                <img src="project4.jpg" alt="Project 4" class="project-img">
+                <h4>Embedded System Design</h4>
+                <p>Microcontroller-based sensor network</p>
+            </div>
+            <div class="project-tile" data-project="5">
+                <img src="project5.jpg" alt="Project 5" class="project-img">
+                <h4>ASIC Verification</h4>
+                <p>UVM-based verification of ASIC modules</p>
+            </div>
+            <div class="project-tile" data-project="6">
+                <img src="project6.jpg" alt="Project 6" class="project-img">
+                <h4>Wireless Communication</h4>
+                <p>Bluetooth-based data transfer system</p>
+            </div> -->
+        </div>
+        <div class="project-modal">
+            <div class="project-modal-content">
+                <span class="close-modal">&times;</span>
+                <img src="" alt="Project Image" class="modal-img">
+                <h3 class="modal-title"></h3>
+                <p class="modal-brief"></p>
+                <p class="modal-details"></p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="glass-container">
-        <h2>Contact Me</h2>
-        <form>
-            <input type="email" placeholder="Your email" />
-            <textarea placeholder="Your message"></textarea>
-            <button type="submit">Send</button>
-        </form>
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="section-divider-wo-dash"></div>
+        <div class="experience-container">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Nvidia</h3>
+                    <span class="experience-date">May 2025 - Jul 2025</span>
+                </div>
+                <p class="experience-role">SoC Design Verification Intern - Boot Team</p>
+                <ul class="experience-details">
+                    <li>Integrated BPMPSWSIM (Arm Cortex R5 model) into lower integration TBs</li>
+                    <li>Performed CPS performance analysis, reducing impact from 19.2% to 2.95% through optimizations</li>
+                    <li>Developed verification infrastructure for upcoming server-class CPU chips</li>
+                    <li>Prototyped alternative CPU boot flow currently under architectural review</li>
+                </ul>
+                <div class="experience-learnings">
+                    <strong>Key Technologies:</strong> 
+                    SystemVerilog, UVM, C++, Python, Perl, JasperGold, VCS
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>HiPER (High Performance Automotive)</h3>
+                    <span class="experience-date">Dec 2023 - Jan 2024</span>
+                </div>
+                <p class="experience-role">Embedded Systems Intern</p>
+                <ul class="experience-details">
+                    <li>Contributed to open-source USB-WSL communication bridge for Docker environments</li>
+                    <li>Automated device provisioning and configuration processes</li>
+                    <li>Integrated SD card and camera modules with STM32 microcontroller using Zephyr RTOS</li>
+                    <li>Implemented device tree configurations for peripheral management</li>
+                </ul>
+                <div class="experience-learnings">
+                    <strong>Key Technologies:</strong> 
+                    C, Zephyr RTOS, Device Tree, Linux Drivers, Bash Scripting
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="section-diver-wo-dash"></div>
+        <div class="certifications-container">
+            <div>Certification 1</div>
+            <div>Certification 2</div>
+            <div>Certification 3</div>
+            <div>Certification 4</div>
+            <div>Certification 5</div>
+            <div>Certification 6</div>
+            <div>Certification 7</div>
+            <div>Certification 8</div>
+            <div>Certification 9</div>
+            <div>Certification 10</div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="section-diver-wo-dash"></div>
+        <div class="skills-grid">
+            <div class="skill-item">Skill 1</div>
+            <div class="skill-item">Skill 2</div>
+            <div class="skill-item">Skill 3</div>
+            <div class="skill-item">Skill 4</div>
+            <div class="skill-item">Skill 5</div>
+            <div class="skill-item">Skill 6</div>
+            <div class="skill-item">Skill 7</div>
+        </div>
     </section>
 
     <script src="script.js"></script>

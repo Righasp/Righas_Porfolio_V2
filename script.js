@@ -1,77 +1,25 @@
+// script.js
 document.addEventListener('DOMContentLoaded', () => {
-    const hello = document.getElementById("hello");
-    const boxes = document.querySelectorAll(".glass-container:not(#hello)");
+    const achievementImages = document.querySelectorAll('.achievement-img');
     const background = document.querySelector(".background");
-    const signatureContainer = document.getElementById("signature");
-    const svg = document.querySelector("#signature-svg");
-    const paths = signatureContainer ? signatureContainer.querySelectorAll("path") : [];
+    let currentIndex = 0;
 
-    // If we have paths inside the inline SVG, prepare them for animation
-    if (paths.length) {
-        // set initial dash values
-        paths.forEach((path, i) => {
-            try {
-                const L = path.getTotalLength();
-                path.style.strokeDasharray = L;
-                path.style.strokeDashoffset = L;
-                path.style.stroke = path.style.stroke || getComputedStyle(path).stroke || "#f5c842";
-                path.style.fill = "none";
-                // set transition with a small stagger so the stroke looks natural
-                const duration = 6000; // duration for each path
-                const stagger = 200;   // ms between each path start
-                path.style.transition = `stroke-dashoffset ${duration}ms ease ${i * stagger}ms`;
-            } catch (err) {
-                // some browsers might have problems; ignore if so
-                console.warn("path length error", err);
-            }
-        });
+    // Show achievement images in a cycle
+    function showNextImage() {
+        achievementImages.forEach(img => img.classList.remove('active'));
+        achievementImages[currentIndex].classList.add('active');
+        currentIndex = (currentIndex + 1) % achievementImages.length;
     }
 
-    // Show signature and start drawing + show Hello together
-    requestAnimationFrame(() => {
-        if (signatureContainer) signatureContainer.classList.add('show');
-        // small timeout to ensure styles applied and transition will take effect
-        setTimeout(() => {
-            paths.forEach(path => {
-                path.style.strokeDashoffset = '0';
-            });
-        }, 80);
+    // Start the image cycle
+    showNextImage();
+    setInterval(showNextImage, 3000);
 
-        // show hello immediately so signature animates behind it
-        setTimeout(() => {
-            if (hello) hello.classList.add("show");
-        }, 120);
-    });
-
-    // timing: how long signature animation runs (approx)
-    const signatureAnimationDuration = 2800 + (paths.length * 300); // ms
-    const holdAfterSignature = 1000; // keep Hello visible after signature finishes
-
-    // After a while, fade-out Hello and reveal the rest of the page
-    setTimeout(() => {
-        if (hello) hello.classList.add("fade-out");
-        // remove hello and signature (cleanup) then reveal boxes
-        setTimeout(() => {
-            if (hello) hello.remove();
-            if (signatureContainer) signatureContainer.remove();
-            boxes.forEach((box, index) => {
-                setTimeout(() => {
-                    box.classList.add("show");
-                }, index * 300);
-            });
-        }, 800);
-    }, signatureAnimationDuration + holdAfterSignature);
-
-    // Animate gradient on page load (slow movement to target)
+    // Animate gradient on page load
     background.style.transition = "background-position 4s ease";
     setTimeout(() => {
         background.style.backgroundPosition = "40% 40%";
     }, 500);
-
-    // After initial, make gradient responsive to scroll
-    setTimeout(() => {
-        background.style.transition = "background-position 150ms linear";
-    }, 4200);
 
     // Scroll-controlled gradient movement
     let ticking = false;
@@ -83,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let scrollPercent = maxScroll > 0 ? window.scrollY / maxScroll : 0;
         scrollPercent = Math.min(1, Math.max(0, scrollPercent));
 
-        const targetX = 40 + scrollPercent * 5; // small shift
+        const targetX = 40 + scrollPercent * 5;
         const targetY = 40 + scrollPercent * 5;
         background.style.backgroundPosition = `${targetX}% ${targetY}%`;
 
@@ -103,40 +51,146 @@ document.addEventListener('DOMContentLoaded', () => {
     // initial gradient pos
     updateGradientOnScroll();
 
-    // Smooth scroll for internal anchor links
+    // Smooth scroll and active section tracking
+    const header = document.querySelector('.main-header');
+    const navLinks = document.querySelectorAll('.main-nav a');
+    const sections = document.querySelectorAll('section');
+    const headerHeight = header.offsetHeight;
+
+    function updateActiveSection() {
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - headerHeight;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                const id = section.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(id)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveSection);
+    document.addEventListener('DOMContentLoaded', updateActiveSection);
+
+    // Smooth scroll with header offset
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetID = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetID);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
             }
         });
     });
-});
 
-window.addEventListener('load', () => {
-    const sig = document.querySelector('.signature-container');
-    sig.classList.add('show');
-});
+    // Project modal functionality
+    const projectTiles = document.querySelectorAll('.project-tile');
+    const projectModal = document.querySelector('.project-modal');
+    const modalContent = projectModal.querySelector('.project-modal-content');
+    const modalImg = modalContent.querySelector('.modal-img');
+    const modalTitle = modalContent.querySelector('.modal-title');
+    const modalBrief = modalContent.querySelector('.modal-brief');
+    const modalDetails = modalContent.querySelector('.modal-details');
+    const closeModal = modalContent.querySelector('.close-modal');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const path = document.getElementById("sigPath");
-    const length = path.getTotalLength();
+    // Project details data
+    const projectDetails = {
+        1: {
+            title: "32 Bit RISCV CPU",
+            // brief: "Designed a 32-bit RISC-V CPU which can process all 32 instructions. Major modules include Data Memory, Instruction Memory, Register file and logic solver.",
+            details: "Designed a 32-bit RISC-V CPU which can process all 32 instructions in RV32I instruction set. Instructions from Instr_mem is fed into the CPU core which decodes the instructions and routes the data from instr to different appropriate modules like ALU, register file and extenderes. Major modules include Data Memory, Instruction Memory, Register file and logic solver. Working of the CPU is tested with a custom testbench code. The entire project is programmed using Verilog HDL. Future Scope: Making pipelined machine for all the 32 instructions. Tech Stack: Quartus Prime, Vivado, ModelSim, Waves. Project Outcome: CPU Design, Verilog HDL, Testbench, Simulation, Digital Design, Computer Architecture, RISC-V Instruction Set Architecture (ISA)",
+        },
+        2: {
+            title: "32X8 SRAM Memory Array design",
+            // brief: "Real-time signal processing using FPGA",
+            details: "Designed a 256 Bit SRAM Memory model in Cadence Virtuoso. The fabric of 32X8 bit cells hold the total of 32 ASCII characters. Each bit cell consists of 6 n/pMOS. Operations and states of the cells are controlled by a Word Line(WL), Bit Line(QB) and Bit line Bar(QBB). Each column is connected to Sense Amplifiers(SA) for reading latched values. Data is taken out one byte at a time, 32 times. Design is tested by writing 32-byte ASCII letters and read back after 10 clocks. Future scopes: Integrate this SRAM memory model with the 32-Bit RISC machine and hopefully create a full-fledged working chip. Tech Stack: Cadence, VMWare. Project Outcome: Memory Architecture, Memory Design, Working of storage space, Scalling of storage space"
+        },
+        // 3: {
+        //     title: "IoT Home Automation",
+        //     brief: "Smart home system with IoT integration",
+        //     details: "Built a smart home automation system using IoT protocols for seamless device communication. Integrated sensors and actuators with a central microcontroller hub, enabling remote control via a mobile app. Implemented MQTT for efficient data transfer and ensured system security."
+        // },
+        // 4: {
+        //     title: "Embedded System Design",
+        //     brief: "Microcontroller-based sensor network",
+        //     details: "Developed a sensor network using microcontrollers for environmental monitoring. Designed custom PCB layouts and programmed firmware in C to collect and process sensor data. The system was optimized for low power consumption and reliable data transmission."
+        // },
+        // 5: {
+        //     title: "ASIC Verification",
+        //     brief: "UVM-based verification of ASIC modules",
+        //     details: "Performed functional verification of ASIC modules using the Universal Verification Methodology (UVM). Developed testbenches in SystemVerilog and created comprehensive test plans to ensure design reliability. Achieved high coverage metrics and identified critical bugs."
+        // },
+        // 6: {
+        //     title: "Wireless Communication",
+        //     brief: "Bluetooth-based data transfer system",
+        //     details: "Designed a Bluetooth-based wireless communication system for reliable data transfer between devices. Implemented firmware for Bluetooth Low Energy (BLE) modules and developed a user interface for data visualization. Optimized for low latency and high data integrity."
+        // }
+    };
 
-    // Prepare stroke animation
-    path.style.strokeDasharray = length;
-    path.style.strokeDashoffset = length;
+    projectTiles.forEach(tile => {
+        tile.addEventListener('click', () => {
+            const projectId = tile.getAttribute('data-project');
+            const project = projectDetails[projectId];
+            
+            modalImg.src = tile.querySelector('.project-img').src;
+            modalTitle.textContent = project.title;
+            modalBrief.textContent = project.brief;
+            // Clear existing content
+            modalDetails.innerHTML = '';
+            
+            // Split and process sections
+            const sections = project.details.split(/(Future Scopes?:|Tech Stacks?:|Project Outcomes?:)/i);
+            const mainDescription = sections[0].trim();
+            const sectionContents = [];
+            
+            // Group sections with their content
+            for (let i = 1; i < sections.length; i += 2) {
+                const title = sections[i].replace(/:/g, '').trim();
+                const content = sections[i+1].trim();
+                if (content) {
+                    sectionContents.push({
+                        title: title.charAt(0).toUpperCase() + title.slice(1).toLowerCase(),
+                        items: content.split(/[,.] /).filter(item => item.trim())
+                    });
+                }
+            }
 
-    // Trigger animation
-    setTimeout(() => {
-        path.style.transition = "stroke-dashoffset 3s ease";
-        path.style.strokeDashoffset = "0";
-    }, 200);
+            // Add main description
+            const desc = document.createElement('p');
+            desc.textContent = mainDescription;
+            modalDetails.appendChild(desc);
 
-    // After stroke animation, fill it
-    setTimeout(() => {
-        path.classList.add("filled");
-    }, 3200);
+            // Add each section dynamically
+            sectionContents.forEach(({title, items}) => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.innerHTML = `
+                    <h4>${title}</h4>
+                    <ul>
+                        ${items.map(item => `<li>${item.replace(/\.$/, '')}</li>`).join('')}
+                    </ul>
+                `;
+                modalDetails.appendChild(sectionDiv);
+            });
+            
+            projectModal.style.display = 'flex';
+        });
+    });
+
+    closeModal.addEventListener('click', () => {
+        projectModal.style.display = 'none';
+    });
+
+    projectModal.addEventListener('click', (e) => {
+        if (e.target === projectModal) {
+            projectModal.style.display = 'none';
+        }
+    });
 });
