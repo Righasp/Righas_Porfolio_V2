@@ -400,11 +400,20 @@ h1::after, h2::after {
     transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
 }
 
-.skill-item:hover {
-    background: var(--glass-hover-bg);
-    border-color: var(--glass-hover-border);
-    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.25), inset 0 0 15px rgba(255, 255, 255, 0.15);
-    transform: translateY(-5px) scale(1.02);
+.skill-list span:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .skill-list {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    
+    .skill-heading {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
 }
 
 /* Experience Section Styles */
