@@ -140,6 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const projectId = tile.getAttribute('data-project');
             const project = projectDetails[projectId];
             
+            // Reset scroll position before showing
+            modalContent.scrollTop = 0;
+            
             modalImg.src = tile.querySelector('.project-img').src;
             modalTitle.textContent = project.title;
             modalBrief.textContent = project.brief;

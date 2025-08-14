@@ -1,5 +1,5 @@
 /* style.css */
-/* Dark theme with glass morph effect for project tiles and modal */
+/* Dark theme with glass morph effect for project tiles, modal, and skill categories */
 
 :root {
     --text-color: rgba(255, 255, 255, 0.9);
@@ -316,8 +316,17 @@ h1::after, h2::after {
     max-height: 90%;
     overflow-y: auto;
     position: relative;
-    backdrop-filter: blur(10px);
     animation: scaleIn 0.3s ease;
+    /* Enhanced smooth scrolling */
+    transform: translate3d(0,0,0);
+    -webkit-overflow-scrolling: touch;
+    will-change: transform;
+    scroll-behavior: smooth;
+    /* Performance optimizations */
+    backface-visibility: hidden;
+    perspective: 1000px;
+    contain: content;
+    overscroll-behavior: contain;
 }
 
 @keyframes scaleIn {
@@ -383,40 +392,6 @@ h1::after, h2::after {
     line-height: 1.4;
 }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-}
-
-.skill-item {
-    padding: 1rem;
-    text-align: center;
-    background: var(--glass-bg);
-    border-radius: 12px;
-    border: 1px solid var(--glass-border);
-    color: var(--text-color);
-    cursor: default;
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
-}
-
-.skill-list span:hover {
-    background: rgba(255, 255, 255, 0.12);
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-    .skill-list {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
-    
-    .skill-heading {
-        padding: 1rem;
-        font-size: 1.1rem;
-    }
-}
-
-/* Experience Section Styles */
 .experience-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -472,6 +447,48 @@ h1::after, h2::after {
     font-size: 0.9rem;
 }
 
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.skill-category {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+    transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease;
+}
+
+.skill-category:hover {
+    background: var(--glass-hover-bg);
+    border-color: var(--glass-hover-border);
+    transform: translateY(-5px);
+}
+
+.skill-heading {
+    font-size: 1.3rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    text-align: center;
+    color: var(--text-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.skill-text {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    text-align: center;
+    margin: 0.5rem 0 0;
+    line-height: 1.4;
+}
+
 @media (max-width: 768px) {
     body {
         padding: 1rem;
@@ -498,5 +515,8 @@ h1::after, h2::after {
     .project-modal-content {
         max-width: 95%;
         padding: 1.5rem;
+    }
+    .skills-grid {
+        grid-template-columns: 1fr;
     }
 }
