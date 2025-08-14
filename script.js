@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         background.style.backgroundPosition = "40% 40%";
     }, 500);
 
+    
     // Scroll-controlled gradient movement
     let ticking = false;
     function updateGradientOnScroll() {
