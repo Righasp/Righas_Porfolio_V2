@@ -3,8 +3,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%; /* responsive scaling */
-    max-width: 1000px;
+    width: 200%; /* responsive scaling */
+    max-width: 2000px;
     height: auto;
     z-index: -1;
     pointer-events: none;
@@ -25,7 +25,7 @@
 .signature-path {
     fill: none; /* No fill → no double line */
     stroke: #2c291f;
-    stroke-width: 2;
+    stroke-width: 11;
     /* stroke-dasharray: var(--path-length, 3000); */
     stroke-dashoffset: var(--path-length, 3000);
     animation: drawStroke 4s ease forwards;
