@@ -115,9 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
             details: "Designed a 256 Bit SRAM Memory model in Cadence Virtuoso. The fabric of 32X8 bit cells hold the total of 32 ASCII characters. Each bit cell consists of 6 n/pMOS. Operations and states of the cells are controlled by a Word Line(WL), Bit Line(QB) and Bit line Bar(QBB). Each column is connected to Sense Amplifiers(SA) for reading latched values. Data is taken out one byte at a time, 32 times. Design is tested by writing 32-byte ASCII letters and read back after 10 clocks. Future scopes: Integrate this SRAM memory model with the 32-Bit RISC machine and hopefully create a full-fledged working chip. Tech Stack: Cadence, VMWare. Project Outcome: Memory Architecture, Memory Design, Working of storage space, Scalling of storage space"
         },
         // 3: {
-        //     title: "IoT Home Automation",
-        //     brief: "Smart home system with IoT integration",
-        //     details: "Built a smart home automation system using IoT protocols for seamless device communication. Integrated sensors and actuators with a central microcontroller hub, enabling remote control via a mobile app. Implemented MQTT for efficient data transfer and ensured system security."
+        //     title: "Transmission Gate D Flip Flop",
+        //     // brief: "Smart home system with IoT integration",
+        //     details: "Designed a D Flip Flop in Master Slave Config with Transmission Gates."
         // },
         // 4: {
         //     title: "Embedded System Design",
