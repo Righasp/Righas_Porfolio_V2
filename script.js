@@ -166,4 +166,5 @@ document.addEventListener('DOMContentLoaded', () => {
             showNextAchievement();
             setInterval(showNextAchievement, 3000); // change every 3s
         }
-    
+
+        
