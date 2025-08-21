@@ -1,3 +1,30 @@
+#hello {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, 40px);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    color: #f5c842;
+    opacity: 0;
+    transition: all 0.8s ease;
+    z-index: 20;
+    text-shadow:
+        0 0 10px #f5c842,
+        0 0 20px #f5c842,
+        0 0 40px #ffea8a;
+}
+
+#hello.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+#hello.fade-out {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+}
+
 .signature-container {
     position: fixed;
     top: 50%;
@@ -30,6 +57,14 @@
     stroke-dashoffset: var(--path-length, 3000);
     animation: drawStroke 4s ease forwards;
 }
+
+.signature-container path {
+    stroke: #f5c842; /* golden yellow stroke */
+    stroke-width: 6;
+    filter: drop-shadow(0 0 4px rgba(245, 200, 66, 0.7))
+            drop-shadow(0 0 10px rgba(255, 234, 138, 0.6))     
+}
+
 
 #sigPath {
     fill: none;

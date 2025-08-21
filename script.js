@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 path.style.stroke = path.style.stroke || getComputedStyle(path).stroke || "#f5c842";
                 path.style.fill = "none";
                 // set transition with a small stagger so the stroke looks natural
-                const duration = 1500; // duration for each path
-                const stagger = 100;   // ms between each path start
+                const duration = 2000; // duration for each path
+                const stagger = 200;   // ms between each path start
                 path.style.transition = `stroke-dashoffset ${duration}ms ease ${i * stagger}ms`;
             } catch (err) {
                 // some browsers might have problems; ignore if so
