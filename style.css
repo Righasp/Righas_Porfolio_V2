@@ -58,13 +58,22 @@
     animation: drawStroke 4s ease forwards;
 }
 
+/* golden yellow stroke */
+
+/* .signature-container path {
+    stroke: #f5c842; 
+    stroke-width: 6;
+    filter: drop-shadow(0 0 4px rgba(245, 200, 66, 0.7))
+            drop-shadow(0 0 10px rgba(255, 234, 138, 0.6))     
+} */
+
+/* white stroke */
 .signature-container path {
-    stroke: #f5c842; /* golden yellow stroke */
+    stroke: #f5c842; 
     stroke-width: 6;
     filter: drop-shadow(0 0 4px rgba(245, 200, 66, 0.7))
             drop-shadow(0 0 10px rgba(255, 234, 138, 0.6))     
 }
-
 
 #sigPath {
     fill: none;
@@ -534,6 +543,7 @@ button:hover {
     user-select: text;
     cursor: default;
     transition: none;
+    text-align: justify;
 }
 
 .sub-tab.no-hover::before,
@@ -721,6 +731,7 @@ button:hover {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--text-color);
+    text-align: justify;
 }
 
 .achievement-gallery {
