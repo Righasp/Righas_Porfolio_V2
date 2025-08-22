@@ -124,7 +124,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center; /* Vertical centering */
-    gap: 2rem;
+    /* gap: 2rem; */
     flex-wrap: wrap;
     /* min-height: 300px; */
 }
@@ -139,6 +139,11 @@ body {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     text-shadow: 0 0 10px rgba(245, 200, 66, 0.5);
+}
+
+.about-photo-name h2 {
+    font-size: 1.8rem;
+    text-align: center;
 }
 
 .profile-pic {
