@@ -142,13 +142,13 @@ body {
 }
 
 .about-photo-name h2 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     text-align: center;
 }
 
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid rgba(255, 255, 255, 0.2);
@@ -156,14 +156,14 @@ body {
     cursor: pointer;
     transition: border-color 0.5s ease, box-shadow 0.5s ease;
     align-self: center; /* Vertical centering */
-    margin-right: 2rem; /* Spacing between image and text */
+    /* margin-right: 2rem; */
 }
 
 .profile-pic:hover {
     border-color: rgba(255, 255, 255, 0.4);
     box-shadow:
-        0 0 15px 3px rgba(255, 255, 255, 0.25),
-        inset 0 0 15px 3px rgba(255, 255, 255, 0.15);
+        0 0 15px 3px rgba(255, 255, 255, 0.60),
+        inset 0 0 15px 3px rgba(255, 255, 255, 0.50);
 }
 
 @keyframes gradientMove {
