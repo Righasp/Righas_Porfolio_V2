@@ -1,141 +1,200 @@
+// script.js
 document.addEventListener('DOMContentLoaded', () => {
-    const hello = document.getElementById("hello");
-    const boxes = document.querySelectorAll(".terminal-window:not(#hello)");
+    const achievementImages = document.querySelectorAll('.achievement-img');
     const background = document.querySelector(".background");
-    const signatureContainer = document.getElementById("signature");
-    const svg = document.querySelector("#signature-svg");
-    const paths = signatureContainer ? signatureContainer.querySelectorAll("path") : [];
+    let currentIndex = 0;
 
-    // Signature animation
-    if (paths.length) {
-        paths.forEach((path, i) => {
-            try {
-                const L = path.getTotalLength();
-                path.style.strokeDasharray = L;
-                path.style.strokeDashoffset = L;
-                path.style.stroke = path.style.stroke || getComputedStyle(path).stroke || "#00A82D";
-                path.style.fill = "none";
-                const duration = 2000;
-                const stagger = 200;
-                path.style.transition = `stroke-dashoffset ${duration}ms ease ${i * stagger}ms`;
-            } catch (err) {
-                console.warn("path length error", err);
+    // Show achievement images in a cycle
+    function showNextImage() {
+        achievementImages.forEach(img => img.classList.remove('active'));
+        achievementImages[currentIndex].classList.add('active');
+        currentIndex = (currentIndex + 1) % achievementImages.length;
+    }
+
+    // Start the image cycle
+    showNextImage();
+    setInterval(showNextImage, 3000);
+
+    // Animate gradient on page load
+    background.style.transition = "background-position 4s ease";
+    setTimeout(() => {
+        background.style.backgroundPosition = "40% 40%";
+    }, 500);
+
+    
+    // Scroll-controlled gradient movement
+    let ticking = false;
+    function updateGradientOnScroll() {
+        const docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+        const winH = window.innerHeight;
+        const maxScroll = Math.max(0, docH - winH);
+
+        let scrollPercent = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+        scrollPercent = Math.min(1, Math.max(0, scrollPercent));
+
+        const targetX = 40 + scrollPercent * 5;
+        const targetY = 40 + scrollPercent * 5;
+        background.style.backgroundPosition = `${targetX}% ${targetY}%`;
+
+        ticking = false;
+    }
+
+    function onScroll() {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(updateGradientOnScroll);
+        }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    // initial gradient pos
+    updateGradientOnScroll();
+
+    // Smooth scroll and active section tracking
+    const header = document.querySelector('.main-header');
+    const navLinks = document.querySelectorAll('.main-nav a');
+    const sections = document.querySelectorAll('section');
+    const headerHeight = header.offsetHeight;
+
+    function updateActiveSection() {
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - headerHeight;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                const id = section.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(id)) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
     }
 
-    requestAnimationFrame(() => {
-        if (signatureContainer) signatureContainer.classList.add('show');
-        setTimeout(() => {
-            paths.forEach(path => path.style.strokeDashoffset = '0');
-        }, 80);
-        setTimeout(() => { if (hello) hello.classList.add("show"); }, 120);
-    });
+    window.addEventListener('scroll', updateActiveSection);
+    document.addEventListener('DOMContentLoaded', updateActiveSection);
 
-    const signatureAnimationDuration = 1500 + (paths.length * 300);
-    const holdAfterSignature = 100;
-
-    setTimeout(() => {
-        if (hello) hello.classList.add("fade-out");
-        setTimeout(() => {
-            if (hello) hello.remove();
-            if (signatureContainer) signatureContainer.remove();
-            boxes.forEach((box, index) => {
-                setTimeout(() => box.classList.add("show"), index * 300);
-            });
-        }, 800);
-    }, signatureAnimationDuration + holdAfterSignature);
-
-    // Smooth scroll
+    // Smooth scroll with header offset
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetID = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetID);
-            if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
-    // -------- PROJECT MODAL (from Lean) --------
-    const projectCards = document.querySelectorAll('.project-card');
-    const modal = document.createElement('div');
-    modal.classList.add('project-modal');
-    modal.innerHTML = `
-        <div class="project-modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 class="modal-title"></h3>
-            <p class="modal-details"></p>
-        </div>`;
-    document.body.appendChild(modal);
+    // Project modal functionality
+    const projectTiles = document.querySelectorAll('.project-tile');
+    const projectModal = document.querySelector('.project-modal');
+    const modalContent = projectModal.querySelector('.project-modal-content');
+    const modalImg = modalContent.querySelector('.modal-img');
+    const modalTitle = modalContent.querySelector('.modal-title');
+    const modalBrief = modalContent.querySelector('.modal-brief');
+    const modalDetails = modalContent.querySelector('.modal-details');
+    const closeModal = modalContent.querySelector('.close-modal');
 
-    const modalContent = modal.querySelector('.project-modal-content');
-    const modalTitle = modal.querySelector('.modal-title');
-    const modalDetails = modal.querySelector('.modal-details');
-    const closeModal = modal.querySelector('.close-modal');
-
+    // Project details data
     const projectDetails = {
-        "32 Bit RISC-V CPU": "Designed a 32-bit RISC-V CPU implementing all 32 RV32I instructions. Major modules: Data Memory, Instruction Memory, Register file, ALU, logic solver. Verified with custom testbench. Future Scope: Pipelined implementation.",
-        "32x8 SRAM Memory Array": "Designed a 256-bit SRAM Memory in Cadence Virtuoso. Each cell is 6T, arranged 32x8. Verified read/write of 32 ASCII characters. Future Scope: Integration with RISC-V CPU.",
-        "Other Projects": "• Custom Transmission Gate D-FF in Cadence <br> • Drone with Arduino Nano flight controller <br> • 2N2222 FM Transmitter at 101 MHz, 12m range <br> • Aragog Spider Bot with 6 DoF"
+        1: {
+            title: "32 Bit RISCV CPU",
+            // brief: "Designed a 32-bit RISC-V CPU which can process all 32 instructions. Major modules include Data Memory, Instruction Memory, Register file and logic solver.",
+            details: "Designed a 32-bit RISC-V CPU which can process all 32 instructions in RV32I instruction set. Instructions from Instr_mem is fed into the CPU core which decodes the instructions and routes the data from instr to different appropriate modules like ALU, register file and extenderes. Major modules include Data Memory, Instruction Memory, Register file and logic solver. Working of the CPU is tested with a custom testbench code. The entire project is programmed using Verilog HDL. Future Scope: Making pipelined machine for all the 32 instructions. Tech Stack: Quartus Prime, Vivado, ModelSim, Waves. Project Outcome: CPU Design, Verilog HDL, Testbench, Simulation, Digital Design, Computer Architecture, RISC-V Instruction Set Architecture (ISA)",
+        },
+        2: {
+            title: "32X8 SRAM Memory Array design",
+            // brief: "Real-time signal processing using FPGA",
+            details: "Designed a 256 Bit SRAM Memory model in Cadence Virtuoso. The fabric of 32X8 bit cells hold the total of 32 ASCII characters. Each bit cell consists of 6 n/pMOS. Operations and states of the cells are controlled by a Word Line(WL), Bit Line(QB) and Bit line Bar(QBB). Each column is connected to Sense Amplifiers(SA) for reading latched values. Data is taken out one byte at a time, 32 times. Design is tested by writing 32-byte ASCII letters and read back after 10 clocks. Future scopes: Integrate this SRAM memory model with the 32-Bit RISC machine and hopefully create a full-fledged working chip. Tech Stack: Cadence, VMWare. Project Outcome: Memory Architecture, Memory Design, Working of storage space, Scalling of storage space"
+        },
+        // 3: {
+        //     title: "Transmission Gate D Flip Flop",
+        //     // brief: "Smart home system with IoT integration",
+        //     details: "Designed a D Flip Flop in Master Slave Config with Transmission Gates."
+        // },
+        // 4: {
+        //     title: "Embedded System Design",
+        //     brief: "Microcontroller-based sensor network",
+        //     details: "Developed a sensor network using microcontrollers for environmental monitoring. Designed custom PCB layouts and programmed firmware in C to collect and process sensor data. The system was optimized for low power consumption and reliable data transmission."
+        // },
+        // 5: {
+        //     title: "ASIC Verification",
+        //     brief: "UVM-based verification of ASIC modules",
+        //     details: "Performed functional verification of ASIC modules using the Universal Verification Methodology (UVM). Developed testbenches in SystemVerilog and created comprehensive test plans to ensure design reliability. Achieved high coverage metrics and identified critical bugs."
+        // },
+        // 6: {
+        //     title: "Wireless Communication",
+        //     brief: "Bluetooth-based data transfer system",
+        //     details: "Designed a Bluetooth-based wireless communication system for reliable data transfer between devices. Implemented firmware for Bluetooth Low Energy (BLE) modules and developed a user interface for data visualization. Optimized for low latency and high data integrity."
+        // }
     };
 
-    projectCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const title = card.querySelector('h3').innerText.trim();
-            modalTitle.textContent = title;
-            modalDetails.innerHTML = projectDetails[title] || card.querySelector('p,ul')?.innerHTML || "";
-            modal.style.display = 'flex';
+    projectTiles.forEach(tile => {
+        tile.addEventListener('click', () => {
+            const projectId = tile.getAttribute('data-project');
+            const project = projectDetails[projectId];
+            
+            // Reset scroll position before showing
+            modalContent.scrollTop = 0;
+            
+            modalImg.src = tile.querySelector('.project-img').src;
+            modalTitle.textContent = project.title;
+            modalBrief.textContent = project.brief;
+            // Clear existing content
+            modalDetails.innerHTML = '';
+            
+            // Split and process sections
+            const sections = project.details.split(/(Future Scopes?:|Tech Stacks?:|Project Outcomes?:)/i);
+            const mainDescription = sections[0].trim();
+            const sectionContents = [];
+            
+            // Group sections with their content
+            for (let i = 1; i < sections.length; i += 2) {
+                const title = sections[i].replace(/:/g, '').trim();
+                const content = sections[i+1].trim();
+                if (content) {
+                    sectionContents.push({
+                        title: title.charAt(0).toUpperCase() + title.slice(1).toLowerCase(),
+                        items: content.split(/[,.] /).filter(item => item.trim())
+                    });
+                }
+            }
+
+            // Add main description
+            const desc = document.createElement('p');
+            desc.textContent = mainDescription;
+            modalDetails.appendChild(desc);
+
+            // Add each section dynamically
+            sectionContents.forEach(({title, items}) => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.innerHTML = `
+                    <h4>${title}</h4>
+                    <ul>
+                        ${items.map(item => `<li>${item.replace(/\.$/, '')}</li>`).join('')}
+                    </ul>
+                `;
+                modalDetails.appendChild(sectionDiv);
+            });
+            
+            projectModal.style.display = 'flex';
         });
     });
 
-    closeModal.addEventListener('click', () => modal.style.display = 'none');
-    modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+    closeModal.addEventListener('click', () => {
+        projectModal.style.display = 'none';
+    });
+
+    projectModal.addEventListener('click', (e) => {
+        if (e.target === projectModal) {
+            projectModal.style.display = 'none';
+        }
+    });
 });
-
-
-
-    // -------- ACHIEVEMENT MODAL --------
-    const achievementCards = document.querySelectorAll('.achievement-card');
-
-    const achModal = document.createElement('div');
-    achModal.classList.add('project-modal');
-    achModal.innerHTML = `
-        <div class="project-modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 class="modal-title"></h3>
-            <p class="modal-details"></p>
-        </div>`;
-    document.body.appendChild(achModal);
-
-    const achModalTitle = achModal.querySelector('.modal-title');
-    const achModalDetails = achModal.querySelector('.modal-details');
-    const achCloseModal = achModal.querySelector('.close-modal');
-
-    achievementCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const title = card.dataset.title || card.querySelector('h3').innerText;
-            const details = card.dataset.details || card.querySelector('p').innerText;
-            achModalTitle.textContent = title;
-            achModalDetails.innerHTML = details;
-            achModal.style.display = 'flex';
-        });
-    });
-
-    achCloseModal.addEventListener('click', () => achModal.style.display = 'none');
-    achModal.addEventListener('click', e => { if (e.target === achModal) achModal.style.display = 'none'; });
-
-
-        // -------- ACHIEVEMENTS IMAGE CYCLER --------
-        const achievementImages = document.querySelectorAll('.achievement-img');
-        let currentAchIndex = 0;
-    
-        function showNextAchievement() {
-            achievementImages.forEach(img => img.classList.remove('active'));
-            achievementImages[currentAchIndex].classList.add('active');
-            currentAchIndex = (currentAchIndex + 1) % achievementImages.length;
-        }
-    
-        if (achievementImages.length > 0) {
-            showNextAchievement();
-            setInterval(showNextAchievement, 3000); // change every 3s
-        }

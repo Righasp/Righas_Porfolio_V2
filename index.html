@@ -1,161 +1,215 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Righas Portfolio</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Righas's Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="background"></div>
-
-    <!-- Signature SVG -->
-    <div id="signature" class="signature-container">
-        <svg id="signature-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
-            <path id="untitled-u-h_1" d="M746.818511,425.776856l-20.206058,183.15814" fill="none" stroke="#3f5787" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="untitled-u-h_3" d="M746.818511,425.776856l-20.206058,183.15814" transform="translate(107.548374 0)" fill="none" stroke="#3f5787" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="untitled-u-h_2" d="M736.715482,507.802581l107.548374-.216665" fill="none" stroke="#3f5787" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>\
-            <path id="untitled-u-e" d="M886.212615,583.910626c7.151511-5.482825,33.612104-27.652511,38.379778-32.420185C960,517.355925,930.760567,507.802579,912.043792,517.355925c-17.616799,4.736041-46.27045,73.822854-9.744437,91.579069q34.22033,8.819657,85.333725-80.042054" transform="translate(0 0.000002)" fill="none" stroke="#3f5787" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="untitled-u-l_1" d="M987.63308,528.892942l13.884525-103.116086q-16.616888,122.569468-18.80812,140.35162c-2.137096,17.782152,3.510405,72.799838,36.042645,17.782152q32.53224-55.017686,30.865141-55.017686" transform="translate(.000001 0)" fill="none" stroke="#3f5787" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="untitled-u-l_2" d="M987.63308,528.892942l13.884525-103.116086q-16.616888,122.569468-18.80812,140.35162c-5.070855,29.617557,14.183229,69.476005,45.805417,18.91237q17.227944-32.420185,27.726223-56.147904" transform="translate(61.573881-1.130218)" fill="none" stroke="#3f5787" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="untitled-u-o_1" d="" fill="none" stroke="#3f5787" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="untitled-u-o_2" d="M1117.815006,528.892942c12.982773-14.997982,63.205398-21.307026,57.351101,11.107058-29.48823,90.468267-78.022397,77.779897-70.756046,26.128476c3.090799-26.128476,9.00375-29.567839,12.068502-34.620538s23.109729-31.342668,70.957391-6.97441" transform="translate(.000001 0)" fill="none" stroke="#3f5787" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </div>
-
-    <header id="header" class="terminal-window">
-        <h1>Righas's Portfolio</h1>
-        <nav>
-            <a href="#about">About Me</a>
-            <a href="#achievements">Achievements</a>
-            <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
+    <header class="main-header">
+        <a href="#" class="logo">Righas's Portfolio</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <!-- <li><a href="#certifications">Certifications</a></li> -->
+            </ul>
         </nav>
     </header>
     
     
-    
-    <!-- <h2>About Me</h2> -->
-    <!-- <div class="section-divider"></div> -->
-    <!-- ABOUT -->
-    <section id="about" class="terminal-window">
-        <h2>About Me</h2>
-        <div class="about-content">
-        <div class="about-photo-name">
-        <img src="src/myphoto.jpg" alt="Profile Picture" class="profile-pic">
-        <h2>Righas Panneerselvam</h2>
-        </div>
-        <div class="about-text">
-            <h2>SoC Full Stack (n) Web Front End Engineer</h2>
-            <p class="sub-tab no-hover">
-                I am a final-year B.Tech student in Electronics and Communication Engineering at NIT Trichy, with a strong interest in the design and verification of silicon products. 
-                I enjoy tackling challenging problems, so I participate in various hardware competitions and hackathons. 
-                As a member of Spider R&D, I actively manage multiple teams and contribute to diverse projects. 
-                I am seeking full-time opportunities in electronics, embedded systems, and silicon design and verification.
-            </p>
-        </div>
+    <section id="intro">
+        <div class="section-divider-wo-dash"></div>
+        <div class="intro-content">
+            <div class="image-name-container">
+                <img src="src/profile_photo.jpg" alt="Profile Picture" class="profile-pic">
+                <h2>Righas Panneerselvam</h2>
+            </div>
+            <div class="intro-text">
+                <h3>SoC Design & Verification Engineer</h3>
+                <p class="intro-description">
+                    I am a final-year B.Tech student in Electronics and Communication Engineering at NIT Trichy, with a strong interest in the design and verification of silicon products. I enjoy tackling challenging problems, so I participate in various hardware competitions and hackathons. As a member of the official research and development club, Spider R&D, I actively manage multiple teams and contribute to diverse projects. I am seeking full-time opportunities in the fields of electronics, embedded systems, and silicon design and verification.
+                </p>
+            </div>
         </div>
     </section>
-    
-    <!-- ACHIEVEMENTS -->
-    <!-- <div class="section-divider"></div> -->
-    <section id="achievements" class="terminal-window">
+
+    <section id="achievements">
         <h2>Achievements</h2>
-        <div class="achievements-wrapper">
-            <!-- LEFT : List -->
-            <div class="achievement-list">
-                <ul>
-                    <li>Meshmerize Finalist, HW competition, Techfest IIT-B</li>
-                    <li>E-yantra Winner, national-level FPGA HW competition by GoI & IIT-B</li>
-                    <li>Spider Aragog Workshop – designed & developed spider robot with full DoF</li>
-                    <li>Transfinite HW Hackathon Finalist</li>
-                    <li>TI HW Hackathon consolation prize</li>
-                </ul>
-            </div>
-    
-            <!-- RIGHT : Images -->
-            <div class="achievement-gallery">
-                <img src="src/Workshop_3.JPG" class="achievement-img" alt="Achievement 1">
-                <img src="src/Workshop_2.JPG" class="achievement-img" alt="Achievement 2">
-                <img src="src/E-yantra.jpg" class="achievement-img" alt="Achievement 3">
-                <img src="src/Meshmerize.jpg" class="achievement-img" alt="Achievement 4">
-                <!-- <img src="src/ach5.jpg" class="achievement-img" alt="Achievement 5"> -->
+        <div class="section-divider-wo-dash"></div>
+        <div class="achievement-container">
+            <ul class="achievement-list">
+                <li>Meshmerize Finalist, HW competition, part of Techfest conducted by IIT-B</li>
+                <li>E-yantra Winner, national level FPGA HW competition by GoE and IIT-B</li>
+                <li>Spider Aragog Workshop, designed and developed spider robot from scratch with all DoF Movements servicing over 200 people</li>
+                <li>Transfinite HW Hackathon Finalist</li>
+                <li>TI HW Hackathon consolation</li>
+            </ul>
+            <div class="achievement-images">
+                <img src="src/E-yantra.jpg" alt="Achievement 1" class="achievement-img active">
+                <img src="src/Meshmerize.jpg" alt="Achievement 2" class="achievement-img">
+                <img src="src/Workshop_2.JPG" alt="Achievement 3" class="achievement-img">
+                <img src="src/Workshop_3.JPG" alt="Achievement 3" class="achievement-img">
+                <button class="nav-arrow prev-arrow">&larr;</button>
+                <button class="nav-arrow next-arrow">&rarr;</button>
             </div>
         </div>
     </section>
-    
-    
-    
-    <!-- PROJECTS -->
-    <section id="projects" class="terminal-window">
+
+    <section id="projects">
         <h2>Projects</h2>
+        <div class="section-divider-wo-dash"></div>
         <div class="project-grid">
-            <div class="project-card">
-                <h3>32 Bit RISC-V CPU</h3>
-                <p>Designed a 32-bit RISC-V CPU which can process all 32 instructions. Major modules include Data Memory, Instruction Memory, Register file and logic solver.</p>
+            <div class="project-tile" data-project="1">
+                <img src="src/RISCV_2.png" alt="Project 1" class="project-img">
+                <h4>32 Bit RISCV CPU</h4>
+                <p id="project-detail">Designed a 32-bit RISC-V CPU which can process all 32 instructions. Major modules include Data Memory, Instruction Memory, Register file and logic solver.</p>
             </div>
-            <div class="project-card">
-                <h3>32x8 SRAM Memory Array</h3>
-                <p>Designed a 256-bit SRAM Memory model in Cadence Virtuoso. Fabric of 32x8 bit cells can store 32 ASCII characters. Controlled via WL/BL and verified with ASCII tests.</p>
+            <div class="project-tile" data-project="2">
+                <img src="src/SRAM.png" alt="Project 2" class="project-img">
+                <h4>32X8 SRAM Memory Array</h4>
+                <p id="project-detail">Designed a 256 Bit SRAM Memory model in Cadence Virtuoso. The fabric of 32X8 bit cells hold the total of 32 ASCII characters.</p>
             </div>
-            <div class="project-card">
-                <h3>Other Projects</h3>
-                <ul>
-                    <li>Custom D_FF with Transmission Gate Design in Cadence</li>
-                    <li>Custom Drone with Original Flight Controller</li>
-                    <li>2N2222 FM Tx at 101 MHz and 12m range</li>
-                    <li>Aragog Spider Bot with 6 DoF</li>
-                </ul>
+            <div class="project-tile" data-project="3">
+                <!-- <img src="project3.jpg" alt="Project 3" class="project-img"> -->
+                <h4>Projects which are yet to be added</h4>
+                <div class="section-divider-wo-dash"></div>
+                <li>Custom D_FF with Transmission gate Design in Cadence</li>
+                <li>Custom Drone with Original flight controller</li>
+                <li>2N2222 FM Tx at 101MHz and 12m range</li>
+                <li>Aragog Spider Bot with 6 DoF</li>
+            </div>
+            <!-- <div class="project-tile" data-project="3">
+                <img src="src/D_FF.png" alt="Project 3" class="project-img">
+                <h4>Transmission Gate D_FF</h4>
+                <p id="project-detail">Designed a D Flip Flop in Master Slave Config with Transmission Gates.</p>
+            </div>
+            <div class="project-tile" data-project="4">
+                <img src="src/Drone.jpg" alt="Project 4" class="project-img">
+                <h4>Custom Flight Controller</h4>
+                <p id="project-detail">Designed a D Flip Flop in Master Slave Config with Transmission Gates.</p>
+            </div>
+            <div class="project-tile" data-project="5">
+                <img src="src/FM_Tx.png" alt="Project 5" class="project-img">
+                <h4>FM Trnasmitter</h4>
+                <p id="project-details">2N2222 Trnasistor based FM Trnasmitter</p>
+            </div>
+            <div class="project-tile" data-project="6">
+                <img src="project6.jpg" alt="Project 6" class="project-img">
+                <h4>Aragog Spider Bot</h4>
+                <p id="project-details">Aragog Spider Bot</p>
+            </div> -->
+            <!-- <div class="project-tile" data-project="3">
+                <img src="project3.jpg" alt="Project 3" class="project-img">
+                <h4>IoT Home Automation</h4>
+                <p>Smart home system with IoT integration</p>
+            </div>
+            <div class="project-tile" data-project="4">
+                <img src="project4.jpg" alt="Project 4" class="project-img">
+                <h4>Embedded System Design</h4>
+                <p>Microcontroller-based sensor network</p>
+            </div>
+            <div class="project-tile" data-project="5">
+                <img src="project5.jpg" alt="Project 5" class="project-img">
+                <h4>ASIC Verification</h4>
+                <p>UVM-based verification of ASIC modules</p>
+            </div>
+            <div class="project-tile" data-project="6">
+                <img src="project6.jpg" alt="Project 6" class="project-img">
+                <h4>Wireless Communication</h4>
+                <p>Bluetooth-based data transfer system</p>
+            </div> -->
+        </div>
+        <div class="project-modal">
+            <div class="project-modal-content">
+                <span class="close-modal">&times;</span>
+                <img src="" alt="Project Image" class="modal-img">
+                <h3 class="modal-title"></h3>
+                <p class="modal-brief"></p>
+                <p class="modal-details"></p>
             </div>
         </div>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="terminal-window">
+    <section id="experience">
         <h2>Experience</h2>
-        <div class="sub-tab no-hover">
-            <h3>Nvidia (May 2025 - Jul 2025)</h3>
-            <p><em>SoC Design Verification Intern - Boot Team</em></p>
-            <ul>
-                <li>Integrated BPMPSWSIM into lower TBs and did CPS performance analysis</li>
-                <li>Reduced impact from 19.2% to 2.95% through optimizations</li>
-                <li>Developed new Boot verification infrastructure for upcoming server-class CPU chips</li>
-            </ul>
-            <p><strong>Key Technologies:</strong> Verilog, UVM, C++, Python, Perl, VCS</p>
-        </div>
-        <div class="sub-tab no-hover">
-            <h3>HiPER (Dec 2023 - Jan 2024)</h3>
-            <p><em>Embedded Systems Intern</em></p>
-            <ul>
-                <li>Worked on USB-WSL bridge for Docker</li>
-                <li>Automated device provisioning</li>
-                <li>Integrated SD card and camera modules with STM32 using Zephyr RTOS</li>
-            </ul>
-            <p><strong>Key Technologies:</strong> C, Zephyr RTOS, Device Tree, Linux Drivers</p>
+        <div class="section-divider-wo-dash"></div>
+        <div class="experience-container">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Nvidia</h3>
+                    <span class="experience-date">May 2025 - Jul 2025</span>
+                </div>
+                <p class="experience-role">SoC Design Verification Intern - Boot Team</p>
+                <ul class="experience-details">
+                    <li>Integrated BPMPSWSIM (Arm Cortex R5 model) into lower TBs and did CPS performace analysis</li>
+                    <li>reduced impact from 19.2% to 2.95% through optimizations</li>
+                    <li>The optimised BPMPSWSIM is implemented in the current Boot infrastructure</li>
+                    <li>Developed new Boot verification infrastructure(by deleting the need for BPMPSWSIM) for upcoming server-class CPU chips</li>
+                    <li>The alternative CPU boot flow is currently under review</li>
+                </ul>
+                <div class="experience-learnings">
+                    <strong>Key Technologies:</strong> 
+                    Digital Design and Verification of SoC, Verilog, UVM, C++, Python, Perl, VCS, Communication
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>HiPER (High Performance Automotive)</h3>
+                    <span class="experience-date">Dec 2023 - Jan 2024</span>
+                </div>
+                <p class="experience-role">Embedded Systems Intern</p>
+                <ul class="experience-details">
+                    <li>Contributed to open-source USB-WSL communication bridge for Docker environments</li>
+                    <li>Automated device provisioning and configuration processes</li>
+                    <li>Integrated SD card and camera modules with STM32 microcontroller using Zephyr RTOS</li>
+                    <li>Implemented device tree configurations for peripheral management</li>
+                </ul>
+                <div class="experience-learnings">
+                    <strong>Key Technologies:</strong> 
+                    C, Zephyr RTOS, Device Tree, Linux Drivers, Bash Scripting
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="terminal-window">
+    <!-- <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="section-diver-wo-dash"></div>
+        <div class="certifications-container">
+            <div>Certification 1</div>
+            <div>Certification 2</div>
+            <div>Certification 3</div>
+            <div>Certification 4</div>
+            <div>Certification 5</div>
+            <div>Certification 6</div>
+            <div>Certification 7</div>
+            <div>Certification 8</div>
+            <div>Certification 9</div>
+            <div>Certification 10</div>
+        </div>
+    </section> -->
+
+    <section id="skills">
         <h2>Technical Skills</h2>
+        <div class="section-divider-wo-dash"></div>
         <div class="skills-grid">
-            <div class="skill-item">Programming: Verilog, SystemVerilog, C, C++, Python, MATLAB, Perl, Assembly RV32, CSS, HTML, JS</div>
-            <div class="skill-item">Design Tools: Quartus, ModelSim, Cadence, Proteus, LTspice, emu8086, Vivado, Fusion 360, MATLAB</div>
+            <div class="skill-category">
+                <h3 class="skill-heading">Programming Languages</h3>
+                <p class="skill-text">Verilog, SystemVerilog, C, C++, Python, MATLAB, Perl, Assembly RV32, CSS, HTML, JS</p>
+            </div>
+            <div class="skill-category">
+                <h3 class="skill-heading">Design and Simulation Tools</h3>
+                <p class="skill-text">Quartus Prime, ModelSim, Cadence, Proteus, LTspice, emu8086, Vivado, Fusion 360, MATLAB</p>
+            </div>
         </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="terminal-window">
-        <h2>Contact Me</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
     </section>
 
     <script src="script.js"></script>
