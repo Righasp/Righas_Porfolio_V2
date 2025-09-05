@@ -5,14 +5,14 @@
     transform: translate(-50%, 40px);
     font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 700;
-    color: #f5c842;
+    color: var(--accent-color);
     opacity: 0;
     transition: all 0.8s ease;
     z-index: 20;
     text-shadow:
-        0 0 10px #f5c842,
-        0 0 20px #f5c842,
-        0 0 40px #ffea8a;
+        0 0 10px var(--accent-color),
+        0 0 20px var(--accent-color),
+        0 0 40px var(--glow-color);
 }
 
 #hello.show {
@@ -51,7 +51,7 @@
 
 .signature-path {
     fill: none; /* No fill → no double line */
-    stroke: #2c291f;
+    stroke: var(--accent-color);
     stroke-width: 11;
     /* stroke-dasharray: var(--path-length, 3000); */
     stroke-dashoffset: var(--path-length, 3000);
@@ -69,15 +69,15 @@
 
 /* white stroke */
 .signature-container path {
-    stroke: #f5c842; 
+    stroke: var(--accent-color); 
     stroke-width: 6;
-    filter: drop-shadow(0 0 4px rgba(245, 200, 66, 0.7))
-            drop-shadow(0 0 10px rgba(255, 234, 138, 0.6))     
+    filter: drop-shadow(0 0 4px var(--glow-color))
+            drop-shadow(0 0 10px var(--glow-color));
 }
 
 #sigPath {
     fill: none;
-    stroke: #1f1420;
+    stroke: var(--accent-color);
     stroke-width: 2;
   }
 
@@ -94,17 +94,29 @@
    ------------------------- */
 
 :root {
-    --primary-color: rgba(255, 255, 255, 0.1);
-    --secondary-color: rgba(255, 255, 255, 0.05);
-    --accent-color: #4a90e2;
-    --text-color: rgba(255, 255, 255, 0.9);
+    --primary-color: rgba(255, 255, 255, 0.03); /* Darker, more subtle glass */
+    --secondary-color: rgba(255, 255, 255, 0.08); /* Darker, more subtle border */
+    --accent-color: #00A82D; /* Darker Green */
+    --text-color: #FFFFFF; /* White */
+    --glow-color: rgba(0, 168, 45, 0.7);
+}
+
+.glass-container {
+    background: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 16px;
+    backdrop-filter: blur(10px); /* Consistent blur for glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 body {
     margin: 0;
     padding: 2rem;
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     color: var(--text-color);
     overflow-x: hidden;
     position: relative;
@@ -113,17 +125,14 @@ body {
 .background {
     position: fixed;
     inset: 0;
-    background: linear-gradient(-45deg, #0a0a0a, #1f1420, #d490ff, #442d46);
-    background-size: 400% 400%;
+    background: #000000; /* Black background */
     z-index: -2;
-    background-position: 20% 50%;
-    transition: background-position 4s ease;
 }
 
 .about-content {
     display: flex;
     gap: 4rem;
-    align-items: flex-start;
+    align-items: center; /* Center items vertically */
     padding: 2rem;
     margin: 0 2rem;
 }
@@ -144,7 +153,7 @@ body {
     text-align: center;
     line-height: 1.3;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid rgba(245, 200, 66, 0.3);
+    border-bottom: 2px solid var(--accent-color);
     width: 100%;
 }
 
@@ -159,16 +168,16 @@ body {
 /* Profile name styling */
 .about-photo-name h2 {
     font-size: 1.6rem;
-    color: #f5c842;
+    color: var(--accent-color);
     text-align: center;
-    text-shadow: 0 0 10px rgba(245, 200, 66, 0.4);
+    text-shadow: 0 0 10px var(--glow-color);
     margin: 0;
 }
 
 /* Title styling */
 .about-text h2 {
     font-size: 1.8rem;
-    color: #f5c842;
+    color: var(--accent-color);
     margin-bottom: 1.5rem;
 }
 
@@ -196,10 +205,10 @@ body {
 }
 
 .about-text h3 {
-    color: #f5c842;
+    color: var(--accent-color);
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(245, 200, 66, 0.5);
+    text-shadow: 0 0 10px var(--glow-color);
 }
 
 .about-photo-name h2 {
@@ -212,7 +221,7 @@ body {
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.2);
+    border: 3px solid var(--accent-color);
     position: relative;
     cursor: pointer;
     transition: border-color 0.5s ease, box-shadow 0.5s ease;
@@ -221,10 +230,10 @@ body {
 }
 
 .profile-pic:hover {
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: var(--accent-color);
     box-shadow:
-        0 0 15px 3px rgba(255, 255, 255, 0.60),
-        inset 0 0 15px 3px rgba(255, 255, 255, 0.50);
+        0 0 15px 3px var(--glow-color),
+        inset 0 0 15px 3px var(--glow-color);
 }
 
 @keyframes gradientMove {
@@ -253,65 +262,34 @@ body {
     100% { opacity: 0; visibility: hidden; }
 }
 
-.glass-container {
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 20px;
+.terminal-window {
+    background: #1a1a1a; /* Dark grey */
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
     padding: 2rem;
     margin: 2rem auto;
     max-width: 800px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
     position: relative;
-    overflow: hidden;
     opacity: 0;
     transform: translateY(40px);
     transition: all 0.6s ease;
 }
 
-.glass-container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background:
-        linear-gradient(
-            to top left,
-            rgba(255, 255, 255, 0.15) 0%,
-            rgba(255, 255, 255, 0) 50%
-        ),
-        linear-gradient(
-            to bottom right,
-            rgba(255, 255, 255, 0.05) 0%,
-            rgba(255, 255, 255, 0) 50%
-        );
-    mix-blend-mode: screen;
-    pointer-events: none;
-}
-
-.glass-container::after {
-    content: "";
-    position: absolute;
-    inset: 2px;
-    border-radius: inherit;
-    background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.05),
-        rgba(0, 0, 0, 0.05)
-    );
-    mix-blend-mode: overlay;
-    pointer-events: none;
-}
-
-.glass-container.dark {
-    background: rgba(20, 20, 20, 0.7);
-}
-
-.glass-container.light {
-    background: rgba(255, 255, 255, 0.07);
-}
-
-.glass-container.show {
+.terminal-window.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.terminal-window h2::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+    margin-left: 5px;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
 
 @keyframes slideUp {
@@ -325,7 +303,7 @@ body {
 .section-divider {
     width: 100%;
     height: 1px;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--secondary-color);
     margin: 1.5rem 0;
 }
 
@@ -390,9 +368,9 @@ nav a::after {
 }
 
 nav a:hover {
-    background-color: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: var(--primary-color);
+    border-color: var(--accent-color);
+    border: 1px solid var(--secondary-color);
 }
 
 nav a:hover::before,
@@ -404,9 +382,9 @@ nav a:hover::after {
 .skill-item {
     padding: 1rem;
     text-align: center;
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--primary-color);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--secondary-color);
     color: var(--text-color);
     cursor: default;
     position: relative;
@@ -456,11 +434,11 @@ nav a:hover::after {
 }
 
 .skill-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--primary-color);
+    border-color: var(--accent-color);
     box-shadow:
-        0 6px 15px rgba(255, 255, 255, 0.25),
-        inset 0 0 15px rgba(255, 255, 255, 0.15);
+        0 6px 15px var(--glow-color),
+        inset 0 0 15px var(--glow-color);
     transform: translateY(-5px) scale(1.05);
 }
 
@@ -481,10 +459,10 @@ nav a:hover::after {
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--primary-color);
     border-radius: 16px;
     padding: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--secondary-color);
     position: relative;
     color: var(--text-color);
     cursor: default;
@@ -534,11 +512,11 @@ nav a:hover::after {
 }
 
 .project-card:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--primary-color);
+    border-color: var(--accent-color);
     box-shadow:
-        0 6px 15px rgba(255, 255, 255, 0.25),
-        inset 0 0 15px rgba(255, 255, 255, 0.15);
+        0 6px 15px var(--glow-color),
+        inset 0 0 15px var(--glow-color);
     transform: translateY(-5px) scale(1.02);
 }
 
@@ -578,7 +556,7 @@ button:hover {
         padding: 1rem;
     }
     
-    .glass-container {
+    .terminal-window {
         margin: 1rem auto;
         padding: 1.5rem;
     }
@@ -600,7 +578,7 @@ button:hover {
     left: 50%;
     transform: translate(-50%, 40px);
     font-size: 4rem;
-    color: white;
+    color: var(--accent-color);
     opacity: 0;
     transition: all 0.8s ease;
     z-index: 20;
@@ -630,10 +608,10 @@ button:hover {
 }
 
 .sub-tab.no-hover {
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--primary-color);
     border-radius: 12px;
     padding: 1rem 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--secondary-color);
     color: var(--text-color);
     margin-top: 1rem;
     user-select: text;
@@ -691,8 +669,8 @@ button:hover {
 }
 
 .project-modal-content {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: var(--primary-color);
+    border: 1px solid var(--secondary-color);
     border-radius: 16px;
     padding: 2rem;
     max-width: 600px;
@@ -715,7 +693,7 @@ button:hover {
     color: var(--text-color);
     transition: color 0.3s ease;
 }
-.close-modal:hover { color: #fff; }
+.close-modal:hover { color: var(--accent-color); }
 
 .modal-title {
     font-size: 1.5rem;
@@ -734,8 +712,8 @@ button:hover {
 }
 
 .achievement-card {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--primary-color);
+    border: 1px solid var(--secondary-color);
     border-radius: 14px;
     padding: 1.2rem;
     text-align: center;
@@ -746,8 +724,8 @@ button:hover {
 
 .achievement-card:hover {
     transform: translateY(-6px) scale(1.05);
-    background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 18px rgba(255, 255, 255, 0.25), inset 0 0 10px rgba(255, 255, 255, 0.1);
+    background-color: var(--primary-color);
+    box-shadow: 0 8px 18px var(--glow-color), inset 0 0 10px var(--glow-color);
 }
 
 .achievement-card h3 {
@@ -781,6 +759,7 @@ button:hover {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--text-color);
+    text-align: left; /* Changed from justify */
 }
 
 .achievement-gallery {

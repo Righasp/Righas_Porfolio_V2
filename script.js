@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const hello = document.getElementById("hello");
-    const boxes = document.querySelectorAll(".glass-container:not(#hello)");
+    const boxes = document.querySelectorAll(".terminal-window:not(#hello)");
     const background = document.querySelector(".background");
     const signatureContainer = document.getElementById("signature");
     const svg = document.querySelector("#signature-svg");
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const L = path.getTotalLength();
                 path.style.strokeDasharray = L;
                 path.style.strokeDashoffset = L;
-                path.style.stroke = path.style.stroke || getComputedStyle(path).stroke || "#f5c842";
+                path.style.stroke = path.style.stroke || getComputedStyle(path).stroke || "#00A82D";
                 path.style.fill = "none";
                 const duration = 2000;
                 const stagger = 200;
@@ -45,33 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, 800);
     }, signatureAnimationDuration + holdAfterSignature);
-
-    // Gradient background
-    background.style.transition = "background-position 4s ease";
-    setTimeout(() => { background.style.backgroundPosition = "40% 40%"; }, 500);
-    setTimeout(() => { background.style.transition = "background-position 150ms linear"; }, 4200);
-
-    let ticking = false;
-    function updateGradientOnScroll() {
-        const docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-        const winH = window.innerHeight;
-        const maxScroll = Math.max(0, docH - winH);
-        let scrollPercent = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-        scrollPercent = Math.min(1, Math.max(0, scrollPercent));
-        const targetX = 40 + scrollPercent * 5;
-        const targetY = 40 + scrollPercent * 5;
-        background.style.backgroundPosition = `${targetX}% ${targetY}%`;
-        ticking = false;
-    }
-    function onScroll() {
-        if (!ticking) {
-            ticking = true;
-            requestAnimationFrame(updateGradientOnScroll);
-        }
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    updateGradientOnScroll();
 
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -166,5 +139,3 @@ document.addEventListener('DOMContentLoaded', () => {
             showNextAchievement();
             setInterval(showNextAchievement, 3000); // change every 3s
         }
-
-        
