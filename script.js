@@ -1,3 +1,87 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const hello = document.getElementById("hello");
+    const boxes = document.querySelectorAll(".terminal-window:not(#hello)");
+    const background = document.querySelector(".background");
+    const signatureContainer = document.getElementById("signature");
+    const svg = document.querySelector("#signature-svg");
+    const paths = signatureContainer ? signatureContainer.querySelectorAll("path") : [];
+
+    // Signature animation
+    if (paths.length) {
+        paths.forEach((path, i) => {
+            try {
+                const L = path.getTotalLength();
+                path.style.strokeDasharray = L;
+                path.style.strokeDashoffset = L;
+                path.style.stroke = path.style.stroke || getComputedStyle(path).stroke || "#00A82D";
+                path.style.fill = "none";
+                const duration = 2000;
+                const stagger = 200;
+                path.style.transition = `stroke-dashoffset ${duration}ms ease ${i * stagger}ms`;
+            } catch (err) {
+                console.warn("path length error", err);
+            }
+        });
+    }
+
+    requestAnimationFrame(() => {
+        if (signatureContainer) signatureContainer.classList.add('show');
+        setTimeout(() => {
+            paths.forEach(path => path.style.strokeDashoffset = '0');
+        }, 80);
+        setTimeout(() => { if (hello) hello.classList.add("show"); }, 120);
+    });
+
+    const signatureAnimationDuration = 1500 + (paths.length * 300);
+    const holdAfterSignature = 100;
+
+    setTimeout(() => {
+        if (hello) hello.classList.add("fade-out");
+        setTimeout(() => {
+            if (hello) hello.remove();
+            if (signatureContainer) signatureContainer.remove();
+            boxes.forEach((box, index) => {
+                setTimeout(() => box.classList.add("show"), index * 300);
+            });
+        }, 800);
+    }, signatureAnimationDuration + holdAfterSignature);
+
+    // -------- PROJECT MODAL (from Lean) --------
+    const projectCards = document.querySelectorAll('.project-card');
+    const modal = document.createElement('div');
+    modal.classList.add('project-modal');
+    modal.innerHTML = `
+        <div class="project-modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-title"></h3>
+            <p class="modal-details"></p>
+        </div>`;
+    document.body.appendChild(modal);
+
+    const modalContent = modal.querySelector('.project-modal-content');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDetails = modal.querySelector('.modal-details');
+    const closeModal = modal.querySelector('.close-modal');
+
+    const projectDetails = {
+        "32 Bit RISC-V CPU": "Designed a 32-bit RISC-V CPU implementing all 32 RV32I instructions. Major modules: Data Memory, Instruction Memory, Register file, ALU, logic solver. Verified with custom testbench. Future Scope: Pipelined implementation.",
+        "32x8 SRAM Memory Array": "Designed a 256-bit SRAM Memory in Cadence Virtuoso. Each cell is 6T, arranged 32x8. Verified read/write of 32 ASCII characters. Future Scope: Integration with RISC-V CPU.",
+        "Other Projects": "• Custom Transmission Gate D-FF in Cadence <br> • Drone with Arduino Nano flight controller <br> • 2N2222 FM Transmitter at 101 MHz, 12m range <br> • Aragog Spider Bot with 6 DoF"
+    };
+
+    projectCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('h3').innerText.trim();
+            modalTitle.textContent = title;
+            modalDetails.innerHTML = projectDetails[title] || card.querySelector('p,ul')?.innerHTML || "";
+            modal.style.display = 'flex';
+        });
+    });
+
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+});
+
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
     const achievementImages = document.querySelectorAll('.achievement-img');

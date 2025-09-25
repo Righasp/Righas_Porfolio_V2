@@ -1,12 +1,105 @@
 /* style.css */
 /* Dark theme with glass morph effect for project tiles, modal, and skill categories */
 
+#hello {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, 40px);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    color: var(--accent-color);
+    opacity: 0;
+    transition: all 0.8s ease;
+    z-index: 20;
+    text-shadow:
+        0 0 10px var(--accent-color),
+        0 0 20px var(--accent-color),
+        0 0 40px var(--glow-color);
+}
+
+#hello.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+#hello.fade-out {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+}
+
+.signature-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%; /* responsive scaling */
+    max-width: 2000px;
+    height: auto;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+
+.signature-container.show {
+    opacity: 1;
+}
+
+.signature-container svg {
+    width: 100%;
+    height: auto;
+}
+
+.signature-path {
+    fill: none; /* No fill → no double line */
+    stroke: var(--accent-color);
+    stroke-width: 11;
+    /* stroke-dasharray: var(--path-length, 3000); */
+    stroke-dashoffset: var(--path-length, 3000);
+    animation: drawStroke 4s ease forwards;
+}
+
+/* golden yellow stroke */
+
+/* .signature-container path {
+    stroke: #f5c842; 
+    stroke-width: 6;
+    filter: drop-shadow(0 0 4px rgba(245, 200, 66, 0.7))
+            drop-shadow(0 0 10px rgba(255, 234, 138, 0.6))     
+} */
+
+/* white stroke */
+.signature-container path {
+    stroke: var(--accent-color); 
+    stroke-width: 6;
+    filter: drop-shadow(0 0 4px var(--glow-color))
+            drop-shadow(0 0 10px var(--glow-color));
+}
+
+#sigPath {
+    fill: none;
+    stroke: var(--accent-color);
+    stroke-width: 2;
+  }
+
+@keyframes drawStroke {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+
 :root {
     --text-color: rgba(255, 255, 255, 0.9);
     --glass-bg: rgba(255, 255, 255, 0.06);
     --glass-border: rgba(255, 255, 255, 0.15);
     --glass-hover-bg: rgba(255, 255, 255, 0.1);
     --glass-hover-border: rgba(255, 255, 255, 0.3);
+    --accent-color: #00A82D; /* Darker Green */
+    --glow-color: rgba(0, 168, 45, 0.7);
 }
 
 body {
@@ -258,16 +351,66 @@ h1::after, h2::after {
     background: var(--glass-bg);
     border-radius: 10px;
     border: 1px solid var(--glass-border);
-    transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease;
+    transition:
+        background-color 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease,
+        transform 0.3s ease;
     cursor: pointer;
     backdrop-filter: blur(10px);
+    user-select: none;
+}
+
+.project-tile::before,
+.project-tile::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.project-tile::before {
+    inset: 0;
+    background:
+        linear-gradient(
+            to top left,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0) 50%
+        ),
+        linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0) 50%
+        );
+    mix-blend-mode: screen;
+}
+
+.project-tile::after {
+    inset: 2px;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 0, 0, 0.05)
+    );
+    mix-blend-mode: overlay;
 }
 
 .project-tile:hover {
-    background: var(--glass-hover-bg);
-    border-color: var(--glass-hover-border);
-    transform: translateY(-5px);
+    background-color: var(--primary-color);
+    border-color: var(--accent-color);
+    box-shadow:
+        0 6px 15px var(--glow-color),
+        inset 0 0 15px var(--glow-color);
+    transform: translateY(-5px) scale(1.02);
 }
+.project-tile:hover::before,
+.project-tile:hover::after {
+    opacity: 1;
+}
+
 
 .project-img {
     width: 100%;
@@ -291,6 +434,14 @@ h1::after, h2::after {
     font-size: 1rem;
     text-align: center;
     margin: 0;
+}
+
+.terminal-window {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+.terminal-window.show {
+    opacity: 1;
 }
 
 .project-modal {
@@ -404,14 +555,72 @@ h1::after, h2::after {
     padding: 1.5rem;
     margin-bottom: 2rem;
     border: 1px solid var(--glass-border);
-    transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease;
+
+    cursor: default;
+    transition:
+        background-color 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease,
+        transform 0.3s ease;
+    user-select: none;
+}
+
+.experience-item::before,
+.experience-item::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.experience-item::before {
+    inset: 0;
+    background:
+        linear-gradient(
+            to top left,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0) 50%
+        ),
+        linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0) 50%
+        );
+    mix-blend-mode: screen;
+}
+
+.experience-item::after {
+    inset: 2px;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 0, 0, 0.05)
+    );
+    mix-blend-mode: overlay;
 }
 
 .experience-item:hover{
+    background-color: var(--primary-color);
+    border-color: var(--accent-color);
+    box-shadow:
+        0 6px 15px var(--glow-color),
+        inset 0 0 15px var(--glow-color);
+    transform: translateY(-5px) scale(1.02);
+}
+
+.experience-item:hover::before,
+.experience-item:hover::after {
+    opacity: 1;
+}
+
+/* .experience-container:hover {
     background: var(--glass-hover-bg);
     border-color: var(--glass-hover-border);
     transform: translateY(-5px);
-}
+} */
 
 .experience-header {
     display: flex;
