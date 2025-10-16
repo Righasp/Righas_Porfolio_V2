@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn("path length error", err);
             }
         });
-    }
+    } 
 
     requestAnimationFrame(() => {
         if (signatureContainer) signatureContainer.classList.add('show');
